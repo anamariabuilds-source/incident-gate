@@ -21,3 +21,18 @@ export type SimulatedIncident = {
   source: string;
   evidence: readonly EvidenceItem[];
 };
+
+export const gateStates = ["YES", "NO", "UNKNOWN", "UNVERIFIED"] as const;
+export type GateState = (typeof gateStates)[number];
+
+export type GateInput = {
+  requiredEvidenceAvailable: GateState;
+  businessConsequencesUnderstood: GateState;
+  authorityConfirmed: GateState;
+  actionBoundedAndReversible: GateState;
+};
+
+export type GateResult = {
+  decision: "MAY_PROCEED" | "HUMAN_ESCALATION_REQUIRED";
+  failedConditions: readonly (keyof GateInput)[];
+};

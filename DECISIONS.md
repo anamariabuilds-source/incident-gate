@@ -4,16 +4,16 @@
 
 ### Foundation and data boundary
 
-**DECISION**  
+**DECISION**
 Use four Next.js App Router routes inside one shared operational shell, with typed simulated incident data outside presentation components.
 
-**WHY**  
+**WHY**
 Direct routes preserve refresh behavior, mirror the four approved workflow states, and keep presentation separate from incident data and later gate logic.
 
-**ALTERNATIVE REJECTED**  
+**ALTERNATIVE REJECTED**
 A single large client component with transient step state, because refreshes would lose workflow location and mix unrelated responsibilities.
 
-**IMPACT**  
+**IMPACT**
 The UI can stay close to the approved mockup while evidence, AI assistance, and deterministic decision logic remain independently testable.
 
 ### Security telemetry
@@ -44,6 +44,20 @@ Presenting fallback copy as live AI or allowing model output to control authoriz
 **IMPACT**  
 The final deployment will need a server-only API key; the gate result will remain outside the LLM boundary.
 
+### Deterministic action boundary
+
+**DECISION**
+Implement the Reversibility Gate as a pure function that accepts only four allow-listed condition states and permits progress only when every state is `YES`.
+
+**WHY**
+`NO`, `UNKNOWN`, and `UNVERIFIED` must all reduce authority and produce human escalation.
+
+**ALTERNATIVE REJECTED**
+Passing AI prose, confidence, or recommendations into the authorization decision.
+
+**IMPACT**
+The approved demo result is stable, auditable, and testable even when the LLM is unavailable or produces unexpected text.
+
 ### NEXT FIRST MOVE
 
-Implement the deterministic Reversibility Gate and prove that the AI summary cannot change its result.
+Run the core checks, create Deployment 1, then implement the structured escalation packet.
