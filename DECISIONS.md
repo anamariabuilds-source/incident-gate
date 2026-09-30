@@ -72,6 +72,26 @@ Collapsing the core checkpoint into the final deployment.
 **IMPACT**
 Deployment `dpl_58Pp3dbbL7G7isKEspwLKMXvzh6L` is available at `https://incident-gate-6kysdimko-anamaria-builds.vercel.app`; the public production alias is `https://incident-gate.vercel.app`. The first CLI attempt failed because Vercel derived an invalid name from the local folder, then succeeded with the explicit project name `incident-gate`.
 
+### Mechanical test bug
+
+**EXPECTED**
+The interface must enforce Reporte → Evidencia → Evaluación → Escalación and never expose a direct Alert → Action path.
+
+**ACTUAL**
+Every item in the top progress indicator was a link. From the initial report, Carlos could select “3. Evaluación” and reach the proposed action without reviewing evidence.
+
+**REPRODUCTION STEPS**
+Open the deployed root URL and select “3. Evaluación” in the top navigation.
+
+**CAUSE**
+The shared shell rendered all workflow steps as unrestricted Next.js links regardless of current progress.
+
+**FIX**
+Render future and current steps as non-interactive progress labels; expose links only for previously completed steps. Forward movement remains available only through each screen’s approved primary CTA.
+
+**RETEST RESULT**
+Passed. Eight automated tests, lint, type checking, and the production build succeeded. Preview deployment `dpl_HMdeGvF1WFU336CfMFVNfxqtmRbb` exposed no direct `/evaluacion` or `/escalacion` link from Reporte, rendered three future steps as locked, and retained the approved `/evidencia` CTA.
+
 ### NEXT FIRST MOVE
 
-Run the complete mechanical test on the four-screen deployment and document the first real product bug found.
+Retest the mechanical navigation fix, capture Persona Test screenshots in workflow order, and stop for the Persona Test findings.

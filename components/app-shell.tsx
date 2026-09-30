@@ -25,11 +25,23 @@ export function AppShell({ activeStep, children }: { activeStep: number; childre
           <span><strong>Incident Gate</strong><small>Apoyo para TI generalistas en PyMEs</small></span>
         </Link>
         <nav className="step-nav" aria-label="Progreso del incidente">
-          {steps.map((step, index) => (
-            <Link key={step.label} href={step.href} className={activeStep === index + 1 ? "active" : ""} aria-current={activeStep === index + 1 ? "step" : undefined}>
-              <span>{step.number}</span> {step.label}
-            </Link>
-          ))}
+          {steps.map((step, index) => {
+            const stepNumber = index + 1;
+            const content = <><span>{step.number}</span> {step.label}</>;
+            if (stepNumber < activeStep) {
+              return <Link key={step.label} href={step.href} className="step-link completed">{content}</Link>;
+            }
+            return (
+              <span
+                key={step.label}
+                className={`step-link ${stepNumber === activeStep ? "active" : "locked"}`}
+                aria-current={stepNumber === activeStep ? "step" : undefined}
+                aria-disabled={stepNumber > activeStep ? "true" : undefined}
+              >
+                {content}
+              </span>
+            );
+          })}
         </nav>
         <div className="operator">
           <span className="avatar">CR</span>
