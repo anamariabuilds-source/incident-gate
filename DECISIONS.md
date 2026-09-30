@@ -46,4 +46,4 @@ The final deployment will need a server-only API key; the gate result will remai
 
 ### NEXT FIRST MOVE
 
-Complete and verify the approved Incident Intake and Evidence Review screens.
+Implement the deterministic Reversibility Gate and prove that the AI summary cannot change its result.
