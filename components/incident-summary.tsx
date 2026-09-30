@@ -38,9 +38,11 @@ export function IncidentSummary({ evidence }: { evidence: readonly EvidenceItem[
       <div className="sparkle" aria-hidden="true">✦</div>
       <div>
         <div className="summary-heading">
-          <h2 id="summary-title">Resumen asistido por IA</h2>
+          <h2 id="summary-title">
+            {source === "live" ? "Resumen asistido por IA" : source === "fallback" ? "Resumen determinístico de respaldo" : "Resumen del incidente"}
+          </h2>
           <span className={`summary-source ${source}`}>
-            {source === "live" ? "IA EN VIVO" : source === "loading" ? "VERIFICANDO CONEXIÓN" : "RESUMEN DE RESPALDO"}
+            {source === "live" ? "IA EN VIVO" : source === "loading" ? "VERIFICANDO CONEXIÓN" : "RESPALDO DETERMINÍSTICO"}
           </span>
         </div>
         <p>{summary}</p>

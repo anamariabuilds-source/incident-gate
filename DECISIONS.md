@@ -109,6 +109,26 @@ Add one clarification directly beneath the CTA: “Solo revisarás evidencia —
 **OBSERVED OUTCOME**
 Carlos did not take an unauthorized action. The later Reversibility Gate corrected the ambiguity before a consequential action was presented.
 
+### Dragon Stack verification
+
+**DECISION**
+Use the server-only OpenAI Responses API with the Vercel-managed `OPENAI_API_KEY` and `OPENAI_MODEL`, parse raw `output` message content, and retain deterministic fallback on any API or semantic-validation failure.
+
+**WHY**
+The existing raw-fetch integration incorrectly expected the SDK-only `output_text` convenience property. The corrected boundary aggregates `output_text` content from raw response items, rejects incomplete or unsafe summaries, and never passes model output to the gate.
+
+**SECURITY COMPONENT ASSESSMENT**
+The approved Packet explicitly defines the security tooling/data layer as simulated Microsoft 365 / Defender-style telemetry. The structured incident JSON is therefore an honest simulated security-data component for this prototype, visibly labeled as simulated; it is not represented as a live Microsoft tenant or API integration.
+
+**THIRD COMPONENT**
+Structured incident JSON, allow-list validation, and the deterministic Reversibility / Authority Gate remain independent of the LLM and security-data presentation.
+
+**ALTERNATIVE REJECTED**
+Adding an unrelated external security API merely to claim an integration, connecting a real tenant, or using an SDK dependency when the existing server runtime can safely call the API.
+
+**IMPACT**
+The intended stack is: simulated Microsoft security telemetry → real server-side OpenAI assistance → deterministic gate → human escalation. The live LLM path must still be proven after authorized Production deployment; code and local fallback tests alone are not evidence that Production API access works.
+
 ### NEXT FIRST MOVE
 
-Resolve and verify the real server-side LLM and Dragon Stack requirements before Deployment 2.
+After explicit approval, merge the verified branch, perform Deployment 2, and prove the Production endpoint reports live AI rather than fallback without exposing secrets.
