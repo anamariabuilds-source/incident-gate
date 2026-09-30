@@ -58,6 +58,20 @@ Passing AI prose, confidence, or recommendations into the authorization decision
 **IMPACT**
 The approved demo result is stable, auditable, and testable even when the LLM is unavailable or produces unexpected text.
 
+### Deployment 1
+
+**DECISION**
+Create the first production deployment immediately after Commit 3 and preserve its immutable identifier.
+
+**WHY**
+This records the approved core workflow through the Reversibility Gate before packet and usability corrections.
+
+**ALTERNATIVE REJECTED**
+Collapsing the core checkpoint into the final deployment.
+
+**IMPACT**
+Deployment `dpl_58Pp3dbbL7G7isKEspwLKMXvzh6L` is available at `https://incident-gate-6kysdimko-anamaria-builds.vercel.app`; the public production alias is `https://incident-gate.vercel.app`. The first CLI attempt failed because Vercel derived an invalid name from the local folder, then succeeded with the explicit project name `incident-gate`.
+
 ### NEXT FIRST MOVE
 
-Run the core checks, create Deployment 1, then implement the structured escalation packet.
+Run the complete mechanical test on the four-screen deployment and document the first real product bug found.
