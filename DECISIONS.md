@@ -129,6 +129,20 @@ Adding an unrelated external security API merely to claim an integration, connec
 **IMPACT**
 The intended stack is: simulated Microsoft security telemetry → real server-side OpenAI assistance → deterministic gate → human escalation. The live LLM path must still be proven after authorized Production deployment; code and local fallback tests alone are not evidence that Production API access works.
 
+### Deployment 2 verification
+
+**DEPLOYMENT**
+Production deployment `dpl_3gevNNg57YNxqXzRFLY7t9tN9QFg` at `https://incident-gate-haa91q8jk-anamaria-builds.vercel.app`, aliased to `https://incident-gate.vercel.app`.
+
+**RUNTIME RESULT**
+An HTTPS request containing only the approved simulated incident payload returned HTTP 200, `source: live`, and a non-empty bounded summary. The summary text and credentials were not printed or recorded.
+
+**SAFETY RESULT**
+The rendered Production UI labeled the summary `IA EN VIVO`, retained the visible simulated-security-data label and Persona Test clarification, and continued to return `SE REQUIERE ESCALACIÓN HUMANA` for the deterministic Gate. The LLM did not authorize a consequential action.
+
+**CHECKS**
+Fourteen automated tests, ESLint, TypeScript checking, and the Production build passed before deployment. The Production deployment reported Ready and the final rendered workflow checks passed.
+
 ### NEXT FIRST MOVE
 
-After explicit approval, merge the verified branch, perform Deployment 2, and prove the Production endpoint reports live AI rather than fallback without exposing secrets.
+Use the verified Production URL for the final BUILDCHAT submission; make no further product changes unless a genuine issue is discovered.
