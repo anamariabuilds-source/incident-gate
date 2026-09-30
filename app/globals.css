@@ -100,6 +100,7 @@ button, a { font: inherit; }
 .primary-action { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 61px; border-radius: 8px; color: white; background: linear-gradient(180deg, #1686f4, #076cda); box-shadow: 0 8px 18px rgb(7 108 218 / 17%); text-decoration: none; font-size: 18px; font-weight: 750; }
 .primary-action:hover { background: linear-gradient(180deg, #0878e8, #075fc2); }
 .primary-action.compact { min-height: 46px; padding: 0 20px; font-size: 14px; }
+.cta-authority-clarification { margin: 9px 0 0; color: #526079; font-size: 11px; font-weight: 650; text-align: center; }
 .secondary-action { display: inline-flex; min-height: 44px; align-items: center; padding: 0 16px; border: 1px solid #bdd3ec; border-radius: 7px; color: #234f84; text-decoration: none; font-size: 13px; font-weight: 700; }
 
 .page-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 25px; margin-bottom: 16px; }

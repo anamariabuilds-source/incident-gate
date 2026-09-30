@@ -47,6 +47,7 @@ export default function IncidentIntakePage() {
         </div>
 
         <Link className="primary-action" href="/evidencia">Comenzar revisión de Tier-1 <span aria-hidden="true">→</span></Link>
+        <p className="cta-authority-clarification">Solo revisarás evidencia — esto no autoriza cambios en la cuenta.</p>
       </section>
     </AppShell>
   );

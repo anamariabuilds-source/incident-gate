@@ -92,6 +92,23 @@ Render future and current steps as non-interactive progress labels; expose links
 **RETEST RESULT**
 Passed. Eight automated tests, lint, type checking, and the production build succeeded. Preview deployment `dpl_HMdeGvF1WFU336CfMFVNfxqtmRbb` exposed no direct `/evaluacion` or `/escalacion` link from Reporte, rendered three future steps as locked, and retained the approved `/evidencia` CTA.
 
+### Persona Test fix
+
+**OBSERVED CONFUSION**
+On the Initial Report screen, Carlos did not know whether “Comenzar revisión de Tier-1” meant evidence review only or also allowed changes to the Microsoft 365 account. He cautiously inferred that it meant a basic investigation.
+
+**WHY IT MATTERS**
+Requiring Carlos to infer the meaning of Tier-1 before his authority is established creates an authority-inflation risk. A less cautious generalist could interpret the label as permission to perform routine containment.
+
+**SEVERITY**
+Medium.
+
+**SMALLEST FIX**
+Add one clarification directly beneath the CTA: “Solo revisarás evidencia — esto no autoriza cambios en la cuenta.” No workflow, gate, or other interface behavior changes.
+
+**OBSERVED OUTCOME**
+Carlos did not take an unauthorized action. The later Reversibility Gate corrected the ambiguity before a consequential action was presented.
+
 ### NEXT FIRST MOVE
 
-Retest the mechanical navigation fix, capture Persona Test screenshots in workflow order, and stop for the Persona Test findings.
+Resolve and verify the real server-side LLM and Dragon Stack requirements before Deployment 2.
